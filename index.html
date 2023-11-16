@@ -8,11 +8,18 @@
     <h1>Medicine Scheduler</h1>
     
     <div id="patientsContainer">
-        <!-- Patients will be dynamically added here -->
+        <!-- Default patients and medicines will be dynamically added here -->
     </div>
     
     <button onclick="addPatient()">Add Patient</button>
     
     <script src="script.js"></script>
+    <script>
+        // Create two patients with default medicines
+        addPatient();
+        addPatient();
+        addDefaultMedicines(1);
+        addDefaultMedicines(2);
+    </script>
 </body>
 </html>
