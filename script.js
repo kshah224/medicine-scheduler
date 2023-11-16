@@ -1,10 +1,18 @@
 let patientsCount = 0;
 let medicinesData = {};
 
-function addDefaultMedicines(patientId) {
+function addDefaultMedicines1(patientId) {
     const defaultMedicines = [
-        { name: 'Medicine A', frequency: '2 times a day' },
-        { name: 'Medicine B', frequency: 'Once daily' }
+        { name: 'A', frequency: '13' },
+        { name: 'B', frequency: '7' }
+    ];
+    medicinesData[patientId] = defaultMedicines;
+}
+
+function addDefaultMedicines2(patientId) {
+    const defaultMedicines = [
+        { name: 'A', frequency: '10' },
+        { name: 'B', frequency: '20' }
     ];
     medicinesData[patientId] = defaultMedicines;
 }
