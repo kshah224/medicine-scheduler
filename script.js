@@ -1,27 +1,74 @@
-function addMedicine() {
-    const medicineName = document.getElementById('medicineName').value;
-    const frequency = document.getElementById('frequency').value;
+let patientsCount = 0;
+let medicinesData = {};
 
-    if (medicineName && frequency) {
-        const table = document.getElementById('medicinesTable').getElementsByTagName('tbody')[0];
-        const newRow = table.insertRow(table.rows.length);
-        const cell1 = newRow.insertCell(0);
-        const cell2 = newRow.insertCell(1);
-        const cell3 = newRow.insertCell(2);
+function addPatient() {
+    patientsCount++;
+    const patientId = patientsCount;
+    medicinesData[patientId] = [];
+    
+    const patientDiv = document.createElement('div');
+    patientDiv.classList.add('patient');
+    patientDiv.id = `patient${patientId}`;
+    
+    patientDiv.innerHTML = `
+        <h2>Patient ${patientId}</h2>
+        <table id="medicinesTable${patientId}">
+            <thead>
+                <tr>
+                    <th>Medicine</th>
+                    <th>Frequency</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="medicinesBody${patientId}">
+                <!-- Medicines for Patient ${patientId} will be displayed here -->
+            </tbody>
+        </table>
+        <div>
+            <input type="text" id="medicineName${patientId}" placeholder="Medicine Name">
+            <input type="number" id="medicineFrequency${patientId}" placeholder="Frequency">
+            <button onclick="addMedicine(${patientId})">Add Medicine</button>
+        </div>
+        <button onclick="deletePatient(${patientId})">Delete Patient</button>
+    `;
+    
+    document.getElementById('patientsContainer').appendChild(patientDiv);
+    displayMedicines(patientId);
+}
 
-        cell1.innerHTML = medicineName;
-        cell2.innerHTML = frequency;
-        cell3.innerHTML = '<button onclick="deleteMedicine(this)">Delete</button>';
+function deletePatient(patientId) {
+    delete medicinesData[patientId];
+    const patientDiv = document.getElementById(`patient${patientId}`);
+    patientDiv.parentNode.removeChild(patientDiv);
+}
 
-        // Clear input fields after adding medicine
-        document.getElementById('medicineName').value = '';
-        document.getElementById('frequency').value = '';
-    } else {
-        alert('Please enter both medicine name and frequency.');
+function addMedicine(patientId) {
+    const medicineName = document.getElementById(`medicineName${patientId}`).value.trim();
+    const medicineFrequency = document.getElementById(`medicineFrequency${patientId}`).value.trim();
+    if (medicineName && medicineFrequency) {
+        medicinesData[patientId].push({ name: medicineName, frequency: medicineFrequency });
+        displayMedicines(patientId);
+        document.getElementById(`medicineName${patientId}`).value = '';
+        document.getElementById(`medicineFrequency${patientId}`).value = '';
     }
 }
 
-function deleteMedicine(row) {
-    const i = row.parentNode.parentNode.rowIndex;
-    document.getElementById('medicinesTable').deleteRow(i);
+function deleteMedicine(patientId, rowIndex) {
+    medicinesData[patientId].splice(rowIndex, 1);
+    displayMedicines(patientId);
+}
+
+function displayMedicines(patientId) {
+    const tableBody = document.getElementById(`medicinesBody${patientId}`);
+    tableBody.innerHTML = ''; // Clear previous content
+    
+    medicinesData[patientId].forEach((medicine, index) => {
+        const row = tableBody.insertRow();
+        const cell1 = row.insertCell(0);
+        const cell2 = row.insertCell(1);
+        const cell3 = row.insertCell(2);
+        cell1.innerHTML = medicine.name;
+        cell2.innerHTML = medicine.frequency;
+        cell3.innerHTML = `<button onclick="deleteMedicine(${patientId},${index})">Delete</button>`;
+    });
 }
