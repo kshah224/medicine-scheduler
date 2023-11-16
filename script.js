@@ -1,6 +1,14 @@
 let patientsCount = 0;
 let medicinesData = {};
 
+function addDefaultMedicines(patientId) {
+    const defaultMedicines = [
+        { name: 'Medicine A', frequency: '2 times a day' },
+        { name: 'Medicine B', frequency: 'Once daily' }
+    ];
+    medicinesData[patientId] = defaultMedicines;
+}
+
 function addPatient() {
     patientsCount++;
     const patientId = patientsCount;
