@@ -8,18 +8,71 @@
     <h1>Medicine Scheduler</h1>
     
     <div id="patientsContainer">
-        <!-- Default patients and medicines will be dynamically added here -->
+        <div class="patient" id="patient1">
+            <h2>Patient 1</h2>
+            <table id="medicinesTable1">
+                <thead>
+                    <tr>
+                        <th>Medicine</th>
+                        <th>Frequency</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="medicinesBody1">
+                    <tr>
+                        <td>Medicine A</td>
+                        <td>2 times a day</td>
+                        <td><button onclick="deleteMedicine(1, 0)">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td>Medicine B</td>
+                        <td>Once daily</td>
+                        <td><button onclick="deleteMedicine(1, 1)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <input type="text" id="medicineName1" placeholder="Medicine Name">
+                <input type="text" id="medicineFrequency1" placeholder="Frequency">
+                <button onclick="addMedicine(1)">Add Medicine</button>
+            </div>
+            <button onclick="deletePatient(1)">Delete Patient</button>
+        </div>
+        
+        <div class="patient" id="patient2">
+            <h2>Patient 2</h2>
+            <table id="medicinesTable2">
+                <thead>
+                    <tr>
+                        <th>Medicine</th>
+                        <th>Frequency</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="medicinesBody2">
+                    <tr>
+                        <td>Medicine C</td>
+                        <td>3 times a day</td>
+                        <td><button onclick="deleteMedicine(2, 0)">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td>Medicine D</td>
+                        <td>Twice daily</td>
+                        <td><button onclick="deleteMedicine(2, 1)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <input type="text" id="medicineName2" placeholder="Medicine Name">
+                <input type="text" id="medicineFrequency2" placeholder="Frequency">
+                <button onclick="addMedicine(2)">Add Medicine</button>
+            </div>
+            <button onclick="deletePatient(2)">Delete Patient</button>
+        </div>
     </div>
     
     <button onclick="addPatient()">Add Patient</button>
     
     <script src="script.js"></script>
-    <script>
-        // Create two patients with default medicines
-        addPatient();
-        addPatient();
-        addDefaultMedicines1(1);
-        addDefaultMedicines2(2);
-    </script>
 </body>
 </html>
