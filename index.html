@@ -8,6 +8,7 @@
     <h1>Medicine Scheduler</h1>
     
     <div id="patientsContainer">
+        <!-- Patient 1 -->
         <div class="patient" id="patient1">
             <h2>Patient 1</h2>
             <table id="medicinesTable1">
@@ -33,12 +34,16 @@
             </table>
             <div>
                 <input type="text" id="medicineName1" placeholder="Medicine Name">
-                <input type="text" id="medicineFrequency1" placeholder="Frequency">
+                <input type="number" id="medicineFrequency1" placeholder="Frequency">
                 <button onclick="addMedicine(1)">Add Medicine</button>
+            </div>
+            <div>
+                <input type="password" id="patientPassword1" placeholder="Set Password" maxlength="4" value="1234">
             </div>
             <button onclick="deletePatient(1)">Delete Patient</button>
         </div>
-        
+
+        <!-- Patient 2 -->
         <div class="patient" id="patient2">
             <h2>Patient 2</h2>
             <table id="medicinesTable2">
@@ -64,8 +69,11 @@
             </table>
             <div>
                 <input type="text" id="medicineName2" placeholder="Medicine Name">
-                <input type="text" id="medicineFrequency2" placeholder="Frequency">
+                <input type="number" id="medicineFrequency2" placeholder="Frequency">
                 <button onclick="addMedicine(2)">Add Medicine</button>
+            </div>
+            <div>
+                <input type="password" id="patientPassword2" placeholder="Set Password" maxlength="4" value="2345">
             </div>
             <button onclick="deletePatient(2)">Delete Patient</button>
         </div>
@@ -73,6 +81,8 @@
     
     <button onclick="addPatient()">Add Patient</button>
     
-    <script src="script.js"></script>
+    <script>
+        // The rest of your JavaScript code goes here...
+    </script>
 </body>
 </html>

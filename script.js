@@ -29,6 +29,9 @@ function addPatient() {
             <input type="number" id="medicineFrequency${patientId}" placeholder="Frequency">
             <button onclick="addMedicine(${patientId})">Add Medicine</button>
         </div>
+        <div>
+            <input type="password" id="patientPassword${patientId}" placeholder="Set Password" maxlength="4">
+        </div>
         <button onclick="deletePatient(${patientId})">Delete Patient</button>
     `;
     
@@ -71,4 +74,9 @@ function displayMedicines(patientId) {
         cell2.innerHTML = medicine.frequency;
         cell3.innerHTML = `<button onclick="deleteMedicine(${patientId},${index})">Delete</button>`;
     });
+}
+
+function getPatientPassword(patientId) {
+    const passwordField = document.getElementById(`patientPassword${patientId}`);
+    return passwordField.value.trim().length === 4 ? passwordField.value.trim() : patientId.toString().padStart(4, '0');
 }
